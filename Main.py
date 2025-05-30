@@ -1,6 +1,6 @@
 import random
 
-# Initialize the board
+# Sample tic-tac-toe game 
 board = [' ' for _ in range(9)]
 
 def display_board():
@@ -10,8 +10,8 @@ def display_board():
 
 def player_input(player):
     if player == 'O':
-        # Smart move for 'O' (computer)
-        # 1. Try to win
+        # steps for computer to make smart moves
+        # 1. try to win
         for i in range(9):
             if board[i] == ' ':
                 board[i] = 'O'
@@ -19,7 +19,7 @@ def player_input(player):
                     print(f"Player O (computer) chooses position {i + 1}")
                     return
                 board[i] = ' '
-        # 2. Block X from winning
+        # 2. block X
         for i in range(9):
             if board[i] == ' ':
                 board[i] = 'X'
@@ -28,7 +28,7 @@ def player_input(player):
                     print(f"Player O (computer) chooses position {i + 1}")
                     return
                 board[i] = ' '
-        # 3. Otherwise, pick center, corners, or random
+        # 3. otherwise, pick center, corners, or random
         for i in [4, 0, 2, 6, 8, 1, 3, 5, 7]:
             if board[i] == ' ':
                 board[i] = 'O'
@@ -43,15 +43,15 @@ def player_input(player):
             player_input(player)
 
 def check_win():
-    win_conditions = [(0, 1, 2), (3, 4, 5), (6, 7, 8),  # rows
-                     (0, 3, 6), (1, 4, 7), (2, 5, 8),  # columns
-                     (0, 4, 8), (2, 4, 6)]  # diagonals
+    win_conditions = [(0, 1, 2), (3, 4, 5), (6, 7, 8), 
+                     (0, 3, 6), (1, 4, 7), (2, 5, 8), 
+                     (0, 4, 8), (2, 4, 6)]  
     for a, b, c in win_conditions:
         if board[a] == board[b] == board[c] and board[a] != ' ':
             return board[a]
     return None
 
-# Main game loop
+# Main loop
 current_player = 'X'
 while True:
     display_board()
